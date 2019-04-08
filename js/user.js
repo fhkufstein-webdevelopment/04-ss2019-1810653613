@@ -27,18 +27,25 @@ $(document).ready(function() {
 
         //your code follows here
 
+        var Element = document.getElementById("UserId");
+        var neuerNutzer = Element.value;
+        userListBody.push(neuerNutzer);
+        var Liste = userListBody.length;
+        var Tabelle= document.getElementById("table");
+        var Reihe = Tabelle.insertRow (-1);
+        var ErsteSpalte = Reihe.insertCell(0);
+        var ZweiteSpalte = Reihe.insertCell (1);
+        var DritteSpalte = Reihe.insertCell (2);
+        ErsteSpalte.innerHTML = Liste; //speichern der Länge
+        ZweiteSpalte.innerHTML = neuerNutzer; //ausgeben des users
+        DritteSpalte.innerHTML = "<button type=\"button\" class=\"btn btn-secondary btn-danger deleteTrigger\" title=\"Löschen\"><i class=\"fa fa-trash\"></i></button>"; // Deleter
+
+
         return false;
     });
 
-
-    $('.deleteTrigger').click(function() {
-        //@todo
-        //1. remove current user from dom
-        //2. update number of current users
-
-        //your code follows here
-
-
+    $(userListBody).on('click', '.deleteTrigger', function(){
+        $(this).closest('tr').remove();
     });
 
     //maybe some code follows here
